@@ -1,4 +1,4 @@
-// import Router from 'vanilla-router';
+import Router from 'vanilla-router';
 
 import app from "./app.js";
 import config from "./config.js";
@@ -7,6 +7,8 @@ import AboutController from "../controllers/AboutController.js";
 import SearchController from "../controllers/SearchController.js";
 import LoginController from "../controllers/LoginController.js";
 
+
+import "../static/css/main.css"
 // --------------------------------------------------------------------------------------------------------------------
 // INITIALISATION DE L'APPLICATION
 // --------------------------------------------------------------------------------------------------------------------
