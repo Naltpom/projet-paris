@@ -1,14 +1,21 @@
 {
-  "name": "projet-paris",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "vanilla-router": "^1.2.8"
-  }
+	"name": "projet-paris",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "webpack build --mode=production",
+		"build:dev": "webpack build --mode=development",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"vanilla-router": "^1.2.8"
+	},
+	"devDependencies": {
+		"clean-webpack-plugin": "^3.0.0",
+		"webpack": "^5.24.2",
+		"webpack-cli": "^4.5.0"
+	}
 }

@@ -1,0 +1,29 @@
+<h1>Recherche d'évènements</h1>
+<div class="col-md-8 mx-auto card card-body">
+    <form id="searchForm">
+        <div class="mb-2">
+            <label for="q" class="form-label">Terme de recherche</label>
+            <input type="text" class="form-control" id="q">
+        </div>
+        <div class="mb-2">
+            <label for="date_start" class="form-label">Filtrer par année</label>
+            <select id="date_start" class="form-select" aria-label="Filtrer par année"></select>
+        </div>
+        <div class="mb-3">
+            <label for="sort" class="form-label">Ordre des résultats</label>
+            <select id="sort" class="form-select" aria-label="Ordre des résultats">
+                <option value="date_start">Du plus récent au plus ancien</option>
+                <option value="-date_start">Du plus ancien au plus récent</option>
+                <option value="title">Titre de A à Z</option>
+                <option value="-title">Titre de Z à A</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary w-100">Valider</button>
+        </div>
+    </form>
+</div>
+
+<div id="eventList" class="container">
+
+</div>
