@@ -1,11 +1,18 @@
+
+import app from "../app/app.js";
+
 class LoginController {
     constructor() {
         this.viewPath = "views/login.html"
     }
 
     executeAfterDomUpdate() {
-        console.log("Chargement vue login OK")
+		document
+			.querySelector("#githubLoginBtn")
+			.addEventListener("click", app.connexion.signInWithGithub);
+        
     }
+    
 }
 
 export default LoginController;

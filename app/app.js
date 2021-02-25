@@ -1,3 +1,6 @@
+import firebase from "firebase/app";
+import "firebase/auth";
+
 let app = {
 	// ----------------------------------------------------------------------------------------------------------------
 	// MANIPULATION DU DOM DE L'APPLICATION
@@ -57,6 +60,26 @@ let app = {
 			</nav>
 			`;
 		},
+		checkLoginState(user = null) {
+			const links = user !== null ? [
+				{title: 'Accueil', href: '/#home'},
+				{title: 'Recherche', href: '/#search'},
+				{title: 'A propos', href: '/#about'},
+				{title: 'Déconnexion', href: '/#logout'},
+			] : [
+				{title: 'Accueil', href: '/#home'},
+				{title: 'A propos', href: '/#about'},
+				{title: 'Connexion', href: '/#login'},
+			];
+
+			document.querySelector("#main-menu > ul").innerHTML = links.map(
+				(link) => `
+				<li class="nav-item">
+					<a class="nav-link" href="${link.href}">${link.title}</a>
+				</li>`
+			).join("");
+			console.log(user)
+		}
 	},
 
 	// ----------------------------------------------------------------------------------------------------------------
@@ -73,6 +96,28 @@ let app = {
 				});
 		},
 	},
+
+	connexion: {
+		githubProvider: new firebase.auth.GithubAuthProvider(),
+		signInWithGithub: () => {
+			firebase
+                .auth()
+                .signInWithPopup(app.connexion.githubProvider)
+                .then((result) => {
+					app.dom.checkLoginState({displayName: result.user.displayName || result.additionalUserInfo.username, avatar: result.user.photoURL})
+					app.dom.router.navigateTo("home");
+			}).catch((error) => {
+                    console.log("erreur" + error.message)
+				});
+		}
+	},
+	signOut: () => {
+		firebase.auth().signOut().then(() => {
+
+		}).catch((error) => {
+			console.log(error.message)
+		})
+	}
 };
 
 // L'application est exportée afin d'être accessible par d'autres modules.

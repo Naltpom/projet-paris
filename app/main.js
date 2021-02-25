@@ -1,4 +1,6 @@
 import Router from 'vanilla-router';
+import firebase from "firebase/app";
+import "firebase/auth";
 
 import app from "./app.js";
 import config from "./config.js";
@@ -37,6 +39,7 @@ function initializeRouter() {
 	app.mvc.router.add("login", function () {
 		app.mvc.dispatchRoute(new LoginController());
 	});
+	app.mvc.router.add("logout", app.signOut);
 
 	app.mvc.router.addUriListener();
 
@@ -54,4 +57,16 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 	// Initialisation du routeur.
 	initializeRouter();
+
+	// Init Firebase
+	firebase.initializeApp(config.firebase)
+	firebase.auth().onAuthStateChanged(function(user) {
+		if (user !== null) {
+			app.dom.checkLoginState(user);
+		} else {
+			app.dom.checkLoginState();
+		}
+		app.mvc.router.navigateTo("home");
+		
+	})
 });
